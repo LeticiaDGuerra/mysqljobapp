@@ -23,7 +23,7 @@ function runSearch() {
       message: "What would you like to do?",
       choices: [
         "Add Employee",
-        "Find all artists who appear more than once",
+        "View Employee",
         "Find data within a specific range",
         "Search for a specific song",
         "exit"
