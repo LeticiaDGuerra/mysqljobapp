@@ -27,4 +27,21 @@ function runSearch() {
         "Update Roles",
         "exit"
       ]
-    })}
+    })
+    .then(function(answer) {
+      switch (answer.action) {
+      case "Add Employee":
+        addEmp();
+        break;
+
+      case "View Employee":
+        viewEmp();
+        break;
+
+      case "Updating roles":
+        updateEmp();
+        break;
+
+      }
+    });
+}
