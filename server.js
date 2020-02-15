@@ -24,8 +24,7 @@ function runSearch() {
       choices: [
         "Add Employee",
         "View Employee",
-        "Find data within a specific range",
-        "Search for a specific song",
+        "Update Roles",
         "exit"
       ]
     })}
