@@ -22,7 +22,7 @@ function runSearch() {
       type: "list",
       message: "What would you like to do?",
       choices: [
-        "Find songs by artist",
+        "Add Employee",
         "Find all artists who appear more than once",
         "Find data within a specific range",
         "Search for a specific song",
