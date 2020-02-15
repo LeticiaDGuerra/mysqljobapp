@@ -41,7 +41,10 @@ CREATE TABLE employee_id (
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   role_id INT,
-  manager_id INT
+  manager_id INT,
 
   PRIMARY KEY (id)
 );
+SELECT * FROM job_list.department_id;
+SELECT * FROM job_list.employee_id;
+SELECT * FROM job_list.role_id;
