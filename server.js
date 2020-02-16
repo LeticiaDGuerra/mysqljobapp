@@ -22,23 +22,28 @@ function runSearch() {
       type: "list",
       message: "What would you like to do?",
       choices: [
-        "Add Employee",
-        "View Employee",
+        "View All Employees",
+        "Add Employees",
+        "Add Departments",
+        "Add Roles",
+        "View All Departments",
+        "View by Manager",
+        "View All Roles",
         "Update Roles",
         "exit"
       ]
     })
     .then(function(answer) {
       switch (answer.action) {
-      case "Add Employee":
+      case "Add Employees":
         addEmp();
         break;
 
-      case "View Employee":
+      case "View All Employee":
         viewEmp();
         break;
 
-      case "Updating roles":
+      case "Updating Roles":
         updateEmp();
         break;
 
