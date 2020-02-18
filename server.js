@@ -35,18 +35,40 @@ function runSearch() {
     })
     .then(function(answer) {
       switch (answer.action) {
-      case "Add Employees":
-        addEmp();
-        break;
 
+      
       case "View All Employee":
         viewEmp();
         break;
 
+      case "Add Employees":
+        addEmp();
+        break;
+
+      
       case "Updating Roles":
         updateEmp();
         break;
 
+      case "Add Departments":
+        addDep();
+        break;
+
+      case "Add Roles":
+        addRole();
+        break;
+      
+      case "View All Departments":
+        viewDep();
+        break;
+
+      case "View by Manager":
+        viewMan();
+        break;
+
+      case "View All Roles":
+        viewRoles();
+        break;
       }
     });
 }
