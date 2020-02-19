@@ -35,19 +35,13 @@ function runSearch() {
     })
     .then(function(answer) {
       switch (answer.action) {
-
-      
+        
       case "View All Employee":
         viewEmp();
         break;
 
       case "Add Employees":
         addEmp();
-        break;
-
-      
-      case "Updating Roles":
-        updateEmp();
         break;
 
       case "Add Departments":
@@ -68,6 +62,14 @@ function runSearch() {
 
       case "View All Roles":
         viewRoles();
+        break;
+      
+      case "Updating Roles":
+        updateEmp();
+        break;
+      
+      case "exit":
+        connection.end();
         break;
       }
     });
