@@ -1,3 +1,4 @@
+id,first_name,last_name,role_id,salary,manager_id
 1,Wreck-it,Ralph,Wrecks Things,Retro-Games,10,Fix-it Felix
 2,Vanelope,von Schweetz,Racecar Driver,Sugar Rush,50000,Wreck-it Ralph
 3,Fix-it,Felix,Fixes Things,Retro-Games,100,Disney

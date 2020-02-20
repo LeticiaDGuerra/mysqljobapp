@@ -13,8 +13,10 @@ const connection = mysql.createConnection({
 connection.connect(err => {
   if (err) throw err;
   runSearch();
+  if (err) throw err;
+  //Select all customers and return the result object:
 });
-
+ 
 function runSearch() {
   inquirer
     .prompt({
@@ -74,3 +76,50 @@ function runSearch() {
       }
     });
 }
+function viewEmp() {
+inquirer
+  .prompt({
+    name: "emp",
+    type: "input",
+    message: "View All Employees"
+  })
+    .then(function(answer) {
+      var query = "SELECT * FROM job_list.employees_id;";
+      connection.query(query, { emp: answer.emp}, function(err, res) {
+        // if (err) throw err;
+        // for (var i = 0; i < res.length; i++)// 
+        {
+          console.log("ID: " + res[i].id );
+        }
+        runSearch();
+      });
+    });
+}
+connection.query("SELECT * FROM job_list.employees_id;", function (err, result) {
+  console.log(result);  
+  // runSearch();
+ });
+
+
+
+
+
+
+// connection.release(function(err) {
+//   if (err) throw err;
+//   //Select all customers and return the result object:
+//   connection.query("SELECT * FROM job_list.employee_id;", function (err, result) {
+//     console.log(result);
+//   });
+// });
+// connection.getConnection(function (err, connection) {
+//   connection.query("SELECT * FROM job_list.employee_id;", function (err, rows) {
+//       connection.release();
+//       if (err) throw err;
+
+//       console.log(rows.length);
+//       res.send(JSON.stringify(rows));
+//   });
+// });
+
+/// See if this works for view All Employees first it might not?//
