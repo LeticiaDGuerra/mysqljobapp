@@ -32,13 +32,13 @@ function runSearch() {
         "View by Manager",
         "View All Roles",
         "Update Roles",
-        "exit"
+        "exit",
       ]
     })
-    .then(function(answer) {
+  .then(function(answer) {
       switch (answer.action) {
         
-      case "View All Employee":
+      case "View All Employees":
         viewEmp();
         break;
 
@@ -76,31 +76,69 @@ function runSearch() {
       }
     });
 }
+// function viewEmp() {
+//   inquirer
+//   .prompt({
+//     name: "emp",
+//     type: "input",
+//     message: "View All Employees"
+//   })
+//     // .then(function(answer) {
+//     //   connection.query("SELECT * FROM job_list.employees_id;", function (err, res) {
+//     //     if (err) throw err;
+//     //     console.table(answer.emp);   
+//     //   });
+//     //   runSearch();
+//     // });
+//   // .then(function(answer) {
+//   // var query = "SELECT * FROM job_list.employees_id;";
+//   // connection.query(query, { emp: answer.emp }, function(err, res) {
+//   // if (err) throw err;
+//   //   })
+//   //   runSearch();
+//   // });
+// };
+
 function viewEmp() {
-inquirer
-  .prompt({
-    name: "emp",
-    type: "input",
-    message: "View All Employees"
-  })
-    .then(function(answer) {
-      var query = "SELECT * FROM job_list.employees_id;";
-      connection.query(query, { emp: answer.emp}, function(err, res) {
-        // if (err) throw err;
-        // for (var i = 0; i < res.length; i++)// 
-        {
-          console.log("ID: " + res[i].id );
-        }
-        runSearch();
-      });
-    });
+  //console.log("View all Employees");
+  connection.query("SELECT * FROM job_list.employees_id", function (err, res) {
+      if (err) throw err;
+   {
+          console.table(res)
+      }
+  });
+  runSearch();
 }
-connection.query("SELECT * FROM job_list.employees_id;", function (err, result) {
-  console.log(result);  
-  // runSearch();
- });
 
 
+
+
+
+
+
+
+
+
+///
+
+//
+// connection.query("SELECT * FROM job_list.employees_id;", function (err, result) {
+//   console.table(result);  
+//   runSearch();
+//  });
+
+
+
+
+//  .then(function viewEmp(answer) {
+//   var query = "SELECT * FROM job_list.employees_id;";
+//   connection.query(query,function(err, res) { 
+//     if (err) throw err;
+//     console.table(result)
+//     runSearch();
+//   });
+// });
+// };
 
 
 
