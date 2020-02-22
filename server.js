@@ -25,9 +25,7 @@ function runSearch() {
       message: "What would you like to do?",
       choices: [
         "View All Employees",
-        "Add Employees",
-        "Add Departments",
-        "Add Roles",
+        "Add Employees,Roles and Department",
         "View All Departments",
         "View by Manager",
         "View All Roles",
@@ -42,18 +40,6 @@ function runSearch() {
         viewEmp();
         break;
 
-      case "Add Employees":
-        addEmp();
-        break;
-
-      case "Add Departments":
-        addDep();
-        break;
-
-      case "Add Roles":
-        addRole();
-        break;
-      
       case "View All Departments":
         viewDep();
         break;
@@ -65,7 +51,11 @@ function runSearch() {
       case "View All Roles":
         viewRoles();
         break;
-      
+
+        case "Add Employees,Roles and Department":
+        addEmp();
+        break;
+
       case "Updating Roles":
         updateEmp();
         break;
@@ -99,15 +89,98 @@ function runSearch() {
 //   // });
 // };
 
+
 function viewEmp() {
   //console.log("View all Employees");
   connection.query("SELECT * FROM job_list.employees_id", function (err, res) {
       if (err) throw err;
    {
           console.table(res)
-      }
+      } 
+      runSearch();
   });
-  runSearch();
+ 
+}
+
+function viewDep() {
+  //console.log("View all Employees");
+  connection.query("SELECT department_id FROM job_list.employees_id;", function (err, res) {
+    if (err) throw err;
+    {
+           console.table(res)
+       } 
+       runSearch();
+   });
+  
+ };
+
+function viewMan() {
+  //console.log("View all Employees");
+  connection.query("SELECT manager_id FROM job_list.employees_id;", function (err, res) {
+    if (err) throw err;
+    {
+           console.table(res)
+       } 
+       runSearch();
+   });
+};
+
+function viewRoles() {
+  //console.log("View all Employees");
+  connection.query("SELECT role_id FROM job_list.employees_id;", function (err, res) {
+    if (err) throw err;
+    {
+           console.table(res)
+       } 
+       runSearch();
+   });
+};
+
+////
+// function to handle posting new items up for auction
+function addEmp() {
+  // prompt for info about the item being put up for auction
+  inquirer
+    .prompt([
+      {
+        name: "item",
+        type: "input",
+        message: "What's the first name?"
+      },
+      {
+        name: "item",
+        type: "input",
+        message: "Whats the last name?"
+      },
+      {
+        name: "item",
+        type: "input",
+        message: "What's their role?"
+      },
+      {
+        name: "item",
+        type: "input",
+        message: "What's their department?"
+      },
+    ])
+    .then(function(answer) {
+      // when finished prompting, insert a new item into the db with that info
+      connection.query(
+        "INSERT INTO auctions SET ?",
+        {
+          item_name: answer.item,
+          category: answer.category,
+          starting_bid: answer.startingBid || 0,
+          highest_bid: answer.startingBid || 0
+        },
+        function(err) {
+          if (err) throw err;
+          console.log("Your auction was created successfully!");
+          // re-prompt the user for if they want to bid or post
+          start();
+        }
+      );
+    });
 }
 
 
@@ -115,9 +188,10 @@ function viewEmp() {
 
 
 
-
-
-
+/////
+function updateEmp() {
+  connection.query("UPDATE favorite_db SET has_pet = true WHERE name ; SELECT * from people;")
+}
 
 ///
 

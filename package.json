@@ -12,5 +12,8 @@
     "express": "^4.17.1",
     "inquirer": "^6.2.1",
     "mysql": "github:mysqljs/mysql"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
   }
 }
