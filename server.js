@@ -29,7 +29,7 @@ function runSearch() {
         "View All Departments",
         "View by Manager",
         "View All Roles",
-        "Update Roles",
+        "Update Employee",
         "exit",
       ]
     })
@@ -56,7 +56,7 @@ function runSearch() {
         addEmp();
         break;
 
-      case "Updating Roles":
+      case "Update Employee":
         updateEmp();
         break;
       
@@ -103,7 +103,7 @@ function viewEmp() {
 }
 
 function viewDep() {
-  //console.log("View all Employees");
+  //console.log("View all Departments");
   connection.query("SELECT department_id FROM job_list.employees_id;", function (err, res) {
     if (err) throw err;
     {
@@ -115,7 +115,7 @@ function viewDep() {
  };
 
 function viewMan() {
-  //console.log("View all Employees");
+  //console.log("View Manager");
   connection.query("SELECT manager_id FROM job_list.employees_id;", function (err, res) {
     if (err) throw err;
     {
@@ -148,17 +148,17 @@ function addEmp() {
         message: "What's the first name?"
       },
       {
-        name: "item",
+        name: "item2",
         type: "input",
         message: "Whats the last name?"
       },
       {
-        name: "item",
+        name: "item3",
         type: "input",
         message: "What's their role?"
       },
       {
-        name: "item",
+        name: "item4",
         type: "input",
         message: "What's their department?"
       },
@@ -166,34 +166,106 @@ function addEmp() {
     .then(function(answer) {
       // when finished prompting, insert a new item into the db with that info
       connection.query(
-        "INSERT INTO auctions SET ?",
+        "INSERT INTO employees_id SET ?",
         {
-          item_name: answer.item,
-          category: answer.category,
-          starting_bid: answer.startingBid || 0,
-          highest_bid: answer.startingBid || 0
+          first_names: answer.item,
+          last_name: answer.item2,
+          role_id: answer.item3,
+          department_id: answer.item4,
         },
         function(err) {
           if (err) throw err;
-          console.log("Your auction was created successfully!");
+          console.log(" successful!");
           // re-prompt the user for if they want to bid or post
-          start();
+          runSearch();
         }
       );
     });
 }
-
-
-
-
-
-
 /////
 function updateEmp() {
-  connection.query("UPDATE favorite_db SET has_pet = true WHERE name ; SELECT * from people;")
-}
+  connection.query("SELECT * FROM job_list.employees_id", function (err, res) {
+    if (err) throw err;
+ {
+        console.table(res)
+    } 
+});
+  // prompt for info about the item being put up for auction
+  inquirer
+  .prompt([
+    {
+      name: "change",
+      type: "input",
+      message: "What's the first name you would like to change?"
+    },
+    {
+      name: "change2",
+      type: "input",
+      message: "Whats the last name you would like to change?"
+    },
+    {
+      name: "change3",
+      type: "input",
+      message: "What's their role?"
+    },
+    {
+      name: "change4",
+      type: "input",
+      message: "What's their department?"
+    },
+  ])
+    .then(function(answer) {
+      // when finished prompting, insert a new item into the db with that info
+      inquirer
+    .prompt([
+      {
+        name: "item",
+        type: "input",
+        message: "What's the first name?"
+      },
+      {
+        name: "item2",
+        type: "input",
+        message: "Whats the last name?"
+      },
+      {
+        name: "item3",
+        type: "input",
+        message: "What's their role?"
+      },
+      {
+        name: "item4",
+        type: "input",
+        message: "What's their department?"
+      },
+    ])
+      connection.query(
+        "UPDATE employees_id SET ? WHERE ?",
+        {
+          first_names: answer.item,
+          last_name: answer.item2,
+          role_id: answer.item3,
+          department_id: answer.item4,
+        },
+        function(err) {
+          if (err) throw err;
+          console.log(" successful!");
+          // re-prompt the user for if they want to bid or post
+          runSearch();
+        }
+      );
+    });
+};
 
-///
+
+
+
+// connection.query(
+//   "UPDATE auctions SET ? WHERE ?",
+    // once you have the items, prompt the user for which they'd like to bid on
+ 
+
+
 
 //
 // connection.query("SELECT * FROM job_list.employees_id;", function (err, result) {
