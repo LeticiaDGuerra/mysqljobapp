@@ -184,36 +184,34 @@ function addEmp() {
 }
 /////
 function updateEmp() {
-  connection.query("SELECT * FROM job_list.employees_id", function (err, res) {
+ 
+    connection.query("SELECT * FROM job_list.employees_id", function (err, res) {
     if (err) throw err;
  {
         console.table(res)
-    } 
-});
-  // prompt for info about the item being put up for auction
-  inquirer
-  .prompt([
-    {
-      name: "change",
-      type: "input",
-      message: "What's the first name you would like to change?"
-    },
-    {
-      name: "change2",
-      type: "input",
-      message: "Whats the last name you would like to change?"
-    },
-    {
-      name: "change3",
-      type: "input",
-      message: "What's their role?"
-    },
-    {
-      name: "change4",
-      type: "input",
-      message: "What's their department?"
-    },
-  ])
+ 
+      // once you have the items, prompt the user for which they'd like to bid on
+      
+      inquirer
+        .prompt([
+          {
+            name: "choice",
+            type: "rawlist",
+            choices: function() {
+              var choice = [];{for (var i = 0; i < res.length; i++)
+                choice.push(res[i].first_name);
+              }
+              return choice;
+            },
+            
+            message: "What would you like to update?"
+          }, 
+          {
+            name: "bid",
+            type: "input",
+            message: "How much would you like to bid?"
+          }
+        ])
     .then(function(answer) {
       // when finished prompting, insert a new item into the db with that info
       inquirer
@@ -255,6 +253,8 @@ function updateEmp() {
         }
       );
     });
+  } 
+});
 };
 
 
